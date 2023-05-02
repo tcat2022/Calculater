@@ -1,0 +1,62 @@
+#wrap{
+    text-align: center;
+    left: 50%;
+    position: relative;
+    transform: translate(-50%);
+}
+
+#text{
+    text-align: center;
+}
+
+#title{
+   text-align: center;
+}
+
+#todolist{
+    text-align: center;
+    left: 50%;
+    position: relative;
+    transform: translate(-50%);
+    float: left;
+}
+
+#todolist li{
+margin-top: 10px;
+}
+
+#todolist li button:nth-child(1){
+    margin-left:200px ;
+}
+
+#todolist li button:nth-child(2){
+    margin-left:20px ;
+}
+
+#completed{
+    margin-top: 40%;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    width: 300px;
+    height: 200px;
+    text-align: center;
+    justify-content: center;
+}
+
+#completed h1{
+
+}
+
+#completed p{
+    text-decoration: line-through;
+
+}
+@media (max-width: 420px){
+    #todolist li button:nth-child(1){
+        margin-left:150px ;
+    }
+    #todolist li button:nth-child(2){
+        margin-left:5px ;
+    }
+}
