@@ -1,62 +1,84 @@
-#wrap{
-    text-align: center;
-    left: 50%;
-    position: relative;
-    transform: translate(-50%);
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-#text{
-    text-align: center;
+
+
+#section{
+    display: flex;
+height: 100%;
+align-items: center;
 }
 
-#title{
-   text-align: center;
-}
-
-#todolist{
-    text-align: center;
-    left: 50%;
-    position: relative;
-    transform: translate(-50%);
-    float: left;
-}
-
-#todolist li{
-margin-top: 10px;
-}
-
-#todolist li button:nth-child(1){
-    margin-left:200px ;
-}
-
-#todolist li button:nth-child(2){
-    margin-left:20px ;
-}
-
-#completed{
-    margin-top: 40%;
-    position: relative;
-    left: 50%;
-    transform: translate(-50%);
-    width: 300px;
-    height: 200px;
-    text-align: center;
+#container{
+    width: 400px;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    border: 2px solid green;
+    height: 400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    flex-direction: column;
+    margin-inline: auto;
+    box-shadow: 20px 20px 14px 0px rgb(233, 225, 233);
 }
 
-#completed h1{
-
+#heading{
+    font-size:30px ;
+    margin-bottom: 50px;
 }
 
-#completed p{
-    text-decoration: line-through;
-
+#panel{
+    width: 100px;
+    display: flex;
+    flex-direction: row;
+    border: 2px solid blue;
+   justify-content: space-around;
+   margin-bottom: 50px;
+   border-radius: 10px;
 }
-@media (max-width: 420px){
-    #todolist li button:nth-child(1){
-        margin-left:150px ;
-    }
-    #todolist li button:nth-child(2){
-        margin-left:5px ;
-    }
+
+
+
+#timer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid red;
+    margin-bottom: 0px;
+}
+
+#time{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    font-size:60px ;
+}
+
+#controls{
+    width: 25px;
+    margin-top: 50px;
+    position: relative;
+}
+
+ #start, #reset {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+font-size: 20px;
+}
+
+#reset{
+    display: none;
+}
+
+.active{
+    color: red;
+    transition: color 1s;
 }
