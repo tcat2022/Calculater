@@ -31,14 +31,26 @@ localStorage.setItem("time", input.value);
   localStorage.getItem("time")
   localStorage.setItem("time1", inputBreak.value);
   localStorage.getItem("time1")
-
+  localStorage.setItem("time2", inputLongBreak.value);
+  localStorage.getItem("time2")
 },1000)
 
-window.onload = () => {
+   if (performance.navigation.type == 1){
 workTime =  localStorage.getItem("time")
 input.value = localStorage.getItem("time")
 breakTime =  localStorage.getItem("time1")
 inputBreak.value = localStorage.getItem("time1")
+longbreakTime = localStorage.getItem("time2")
+inputLongBreak.value = localStorage.getItem("time2")
+    document.getElementById("minutes").innerHTML = workTime;
+    document.getElementById("seconds").innerHTML = seconds;
+    workTitle.classList.add('active');
+}else{
+    workTime = 25
+    input.value = 25
+    breakTime = 5
+    inputBreak.value = 5
+    inputLongBreak.value = 15
     document.getElementById("minutes").innerHTML = workTime;
     document.getElementById("seconds").innerHTML = seconds;
     workTitle.classList.add('active');
@@ -82,7 +94,7 @@ start.style.display = "none"
 let reset = document.getElementById("reset")
 reset.style.display = "inherit"
 
-    seconds = 59;
+    seconds = 12;
 
     let workMinuets = workTime - 1;
     let breakMinuets = breakTime - 1;
@@ -100,15 +112,18 @@ reset.addEventListener("click", () => {
 })
 
     let timerFunction = () => {
+       
         document.getElementById("minutes").innerHTML = workMinuets;
         document.getElementById("seconds").innerHTML = seconds;
-
+        if( seconds < 10 ){
+            document.getElementById("seconds").innerHTML  = "0" + seconds;
+        }
         seconds = seconds - 1;
 
-        if(seconds === 0) {
+        if(seconds === -1) {
             workMinuets = workMinuets - 1;
-            if(workMinuets === -1){
-                if(breakCount % 2 === 0){
+            if(workMinuets === 0){
+                if(breakCount % 0 === 0){
                     workMinuets = breakMinuets;
                     breakCount++
                     breakTitle.classList.add("active")
@@ -123,8 +138,11 @@ reset.addEventListener("click", () => {
                 }
                 seconds = 59;
             }
-              
+           
     }
+    
+
+
     setInterval( function(){
         console.log(intreval)
         if(intreval === 4){
@@ -133,8 +151,6 @@ reset.addEventListener("click", () => {
     workMinuets = longbreakTime - 1
                 }
     },1)
-  let a =   setInterval(timerFunction, 1000);
+    let a =   setInterval(timerFunction, 1000);
 })
-
-
-
+console.log(document.getElementById("seconds").innerHTML)
