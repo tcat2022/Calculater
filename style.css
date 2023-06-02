@@ -34,7 +34,7 @@ align-items: center;
 }
 
 #panel{
-    width: 100px;
+    width: 200px;
     display: flex;
     flex-direction: row;
     border: 2px solid blue;
@@ -42,7 +42,12 @@ align-items: center;
    margin-bottom: 50px;
    border-radius: 10px;
 }
-
+#panel div{
+    margin-right:15px ;
+}
+#work{
+    margin-left: 7.5px;
+}
 
 
 #timer{

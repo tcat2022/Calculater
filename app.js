@@ -1,12 +1,15 @@
 let workTitle = document.getElementById("work");
 let breakTitle = document.getElementById("break");
+let longBreakTitle = document.getElementById("longbreak")
 let input = document.getElementById("input")
 let inputBreak = document.getElementById("input-break")
 let inputLongBreak = document.getElementById("input-longbreak")
+let inputLongBreakInterval = document.getElementById("longbreak-interval")
 let workTime = 25;
 let intreval = 0
 let breakTime = 5;
 let longbreakTime = 15
+let longBreakIntervalTime = 4
 let seconds = "00";
 setInterval(function(){
     if(input.value === "0"){
@@ -25,6 +28,11 @@ setInterval(function(){
         inputLongBreak.value = "15"
         alert("error \n you cant use zero")
     }
+    if(inputLongBreakInterval.value === "0"){
+        longBreakIntervalTime = 4
+        inputLongBreakInterval.value = "4"
+        alert("error \n you cant use zero")
+    }
 },1)
 setInterval(function(){
 localStorage.setItem("time", input.value);
@@ -33,6 +41,8 @@ localStorage.setItem("time", input.value);
   localStorage.getItem("time1")
   localStorage.setItem("time2", inputLongBreak.value);
   localStorage.getItem("time2")
+  localStorage.setItem("time3", inputLongBreakInterval.value);
+  localStorage.getItem("time3")
 },1000)
 
    if (performance.navigation.type == 1){
@@ -42,6 +52,8 @@ breakTime =  localStorage.getItem("time1")
 inputBreak.value = localStorage.getItem("time1")
 longbreakTime = localStorage.getItem("time2")
 inputLongBreak.value = localStorage.getItem("time2")
+longBreakIntervalTime = localStorage.getItem("time3")
+inputLongBreakInterval.value = localStorage.getItem("time3")
     document.getElementById("minutes").innerHTML = workTime;
     document.getElementById("seconds").innerHTML = seconds;
     workTitle.classList.add('active');
@@ -51,6 +63,9 @@ inputLongBreak.value = localStorage.getItem("time2")
     breakTime = 5
     inputBreak.value = 5
     inputLongBreak.value = 15
+    longbreakTime = 15
+    inputLongBreakInterval.value = 4
+    longBreakIntervalTime = 4
     document.getElementById("minutes").innerHTML = workTime;
     document.getElementById("seconds").innerHTML = seconds;
     workTitle.classList.add('active');
@@ -73,7 +88,7 @@ if(input){
             breakTime = inputBreak.value 
     
           });
-          input.addEventListener('click', function() {
+          inputBreak.addEventListener('click', function() {
             breakTime = inputBreak.value 
           });
         }    
@@ -83,10 +98,20 @@ if(input){
                 longbreakTime = inputLongBreak.value 
         
               });
-              input.addEventListener('click', function() {
+              inputLongBreak.addEventListener('click', function() {
                 longbreakTime = inputLongBreak.value 
               });
-            }   
+            }  
+            
+        if(inputLongBreakInterval){
+             inputLongBreakInterval.addEventListener('keyup', function() {
+                longBreakIntervalTime = inputLongBreakInterval.value 
+        
+              });
+              inputLongBreakInterval.addEventListener('click', function() {
+                longBreakIntervalTime = inputLongBreakInterval.value 
+              });
+             }  
 
 let start = document.getElementById("start")
 start.addEventListener("click",() =>{
@@ -94,7 +119,7 @@ start.style.display = "none"
 let reset = document.getElementById("reset")
 reset.style.display = "inherit"
 
-    seconds = 12;
+    seconds = 2;
 
     let workMinuets = workTime - 1;
     let breakMinuets = breakTime - 1;
@@ -122,21 +147,22 @@ reset.addEventListener("click", () => {
 
         if(seconds === -1) {
             workMinuets = workMinuets - 1;
-            if(workMinuets === 0){
-                if(breakCount % 0 === 0){
+            if(workMinuets === -1){
+                if(breakCount % 2 === 0){
                     workMinuets = breakMinuets;
                     breakCount++
                     breakTitle.classList.add("active")
                     workTitle.classList.remove("active") 
                     intreval++
                 }else{
-                    workMinuets = workTime;
+                    workMinuets = workTime - 1;
                     breakCount++
                     workTitle.classList.add("active")
                     breakTitle.classList.remove("active")
+                    longBreakTitle.classList.remove("active")
                 }
                 }
-                seconds = 59;
+                seconds = 2;
             }
            
     }
@@ -144,11 +170,12 @@ reset.addEventListener("click", () => {
 
 
     setInterval( function(){
-        console.log(intreval)
-        if(intreval === 4){
-            console.log(longbreakTime)
+        if(intreval == longBreakIntervalTime){
+            console.log(longBreakIntervalTime)
             intreval = 0
     workMinuets = longbreakTime - 1
+    breakTitle.classList.remove("active")
+   longBreakTitle.classList.add("active")
                 }
     },1)
     let a =   setInterval(timerFunction, 1000);
