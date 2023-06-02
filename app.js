@@ -114,10 +114,11 @@ if(input){
              }  
 
 let start = document.getElementById("start")
+let pause = document.getElementById("pause")
 start.addEventListener("click",() =>{
 start.style.display = "none"
+pause.style.display = "inherit"
 let reset = document.getElementById("reset")
-reset.style.display = "inherit"
 
     seconds = 2;
 
@@ -129,11 +130,11 @@ reset.style.display = "inherit"
 reset.addEventListener("click", () => {
     document.getElementById("minutes").innerHTML = workTime;
     document.getElementById("seconds").innerHTML = "00";
-    reset.style.display = "none"
-    document.getElementById("start").style.display = "inherit"
     seconds = "00"
     intreval = 0
     clearInterval(a)
+    start.style.display = "inherit"
+pause.style.display = "none"
 })
 
     let timerFunction = () => {

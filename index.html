@@ -15,6 +15,7 @@
         <input type="number" id="input"  min="1" max="99" step="1">
         <input type="number" id="input-break"  min="1" max="99" step="1">
         <input type="number" id="input-longbreak"  min="1" max="99" step="1">
+        
         <input type="number" id="longbreak-interval"  min="1" max="99" step="1">
 
         <div id="panel">
@@ -31,8 +32,10 @@
         </div>
         <div id="controls">
             <button><i class="fa-solid fa-play" id="start"></i></button>
-            <i onclick="reset()" class="fa-solid fa-arrow-rotate-left" id="reset"></i>
+           
+            <i id="pause" class="fa-solid fa-pause"></i>
         </div>
+        <i onclick="reset()" class="fa-solid fa-arrow-rotate-left" id="reset"></i>
     </div>
 </section>
     <script src="app.js"></script>
