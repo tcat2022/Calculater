@@ -1,3 +1,5 @@
+let start = document.getElementById("start")
+let pause = document.getElementById("pause")
 let workTitle = document.getElementById("work");
 let breakTitle = document.getElementById("break");
 let longBreakTitle = document.getElementById("longbreak")
@@ -11,6 +13,9 @@ let breakTime = 5;
 let longbreakTime = 15
 let longBreakIntervalTime = 4
 let seconds = "00";
+let cancelled = false
+let constantTime = input.value
+let constantSeconds = "59"
 setInterval(function(){
     if(input.value === "0"){
         workTime = 25
@@ -113,14 +118,13 @@ if(input){
               });
              }  
 
-let start = document.getElementById("start")
-let pause = document.getElementById("pause")
+
+
 start.addEventListener("click",() =>{
 start.style.display = "none"
 pause.style.display = "inherit"
 let reset = document.getElementById("reset")
-
-    seconds = 2;
+seconds = constantSeconds
 
     let workMinuets = workTime - 1;
     let breakMinuets = breakTime - 1;
@@ -132,20 +136,20 @@ reset.addEventListener("click", () => {
     document.getElementById("seconds").innerHTML = "00";
     seconds = "00"
     intreval = 0
+    workTime = input.value
+    
     clearInterval(a)
     start.style.display = "inherit"
 pause.style.display = "none"
 })
-
     let timerFunction = () => {
-       
         document.getElementById("minutes").innerHTML = workMinuets;
         document.getElementById("seconds").innerHTML = seconds;
-        if( seconds < 10 ){
+    if( seconds < 10 ){
             document.getElementById("seconds").innerHTML  = "0" + seconds;
         }
-        seconds = seconds - 1;
 
+        seconds = seconds - 1;
         if(seconds === -1) {
             workMinuets = workMinuets - 1;
             if(workMinuets === -1){
@@ -163,13 +167,13 @@ pause.style.display = "none"
                     longBreakTitle.classList.remove("active")
                 }
                 }
-                seconds = 2;
+                seconds = 59;
+                
+                
             }
-           
+            constantTime = workMinuets ;  
+            constantSeconds = seconds + 1
     }
-    
-
-
     setInterval( function(){
         if(intreval == longBreakIntervalTime){
             console.log(longBreakIntervalTime)
@@ -178,7 +182,26 @@ pause.style.display = "none"
     breakTitle.classList.remove("active")
    longBreakTitle.classList.add("active")
                 }
+             
+                   
+                
     },1)
-    let a =   setInterval(timerFunction, 1000);
+    let a =   setInterval(timerFunction,1000);
+    pause.addEventListener('click', () =>{
+        cancelled = true
+        start.style.display = "inherit"
+        pause.style.display = "none"
+        if(cancelled){
+            workTime =  constantTime + 1
+          seconds =  constantSeconds
+              clearInterval(a)
+      console.log(constantSeconds)
+              }
+              else{
+                  constantTime = input.value 
+                  constantSeconds = "00"
+              }
+    })
+
 })
 console.log(document.getElementById("seconds").innerHTML)
