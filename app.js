@@ -119,7 +119,7 @@ if(input){
              }  
 
 
-
+document.title = workTime + ":" + seconds;
 start.addEventListener("click",() =>{
     var audio = new Audio('pomodoro timer.mp3');
 start.style.display = "none"
@@ -138,7 +138,7 @@ reset.addEventListener("click", () => {
     seconds = "00"
     intreval = 0
     workTime = input.value
-    
+    document.title = workTime + ":" + seconds;
     clearInterval(a)
     start.style.display = "inherit"
 pause.style.display = "none"
@@ -150,8 +150,10 @@ breakTitle.classList.remove("active")
         constantSeconds = seconds ;
         document.getElementById("minutes").innerHTML = workMinuets;
         document.getElementById("seconds").innerHTML = seconds;
+        document.title = workMinuets + ":" + seconds;
     if( seconds < 10 ){
             document.getElementById("seconds").innerHTML  = "0" + seconds;
+            document.title = workMinuets + ":" + "0" + seconds;
         }
 
         seconds = seconds - 1;
@@ -159,19 +161,21 @@ breakTitle.classList.remove("active")
             workMinuets = workMinuets - 1;
             if(workMinuets === -1){
                 if(breakCount % 2 === 0){
+                    audio.play();
                     workMinuets = breakMinuets;
                     breakCount++
                     breakTitle.classList.add("active")
                     workTitle.classList.remove("active") 
+                    document.title ="Short Break"
                     intreval++
-                    audio.play();
                 }else{
+                    audio.play();
                     workMinuets = workTime - 1;
                     breakCount++
                     workTitle.classList.add("active")
                     breakTitle.classList.remove("active")
                     longBreakTitle.classList.remove("active")
-                    audio.play();
+                    document.title ="Work"
                 }
                 }
                 seconds = 2;
@@ -184,8 +188,10 @@ breakTitle.classList.remove("active")
             console.log(longBreakIntervalTime)
             intreval = 0
     workMinuets = longbreakTime - 1
+    workTitle.classList.remove("active")
     breakTitle.classList.remove("active")
    longBreakTitle.classList.add("active")
+   document.title ="Long Break"
                 }
              
                    
