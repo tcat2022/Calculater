@@ -15,7 +15,7 @@ let longBreakIntervalTime = 4
 let seconds = "00";
 let cancelled = false
 let constantTime = input.value
-let constantSeconds = "59"
+let constantSeconds = "2"
 setInterval(function(){
     if(input.value === "0"){
         workTime = 25
@@ -121,6 +121,7 @@ if(input){
 
 
 start.addEventListener("click",() =>{
+    var audio = new Audio('pomodoro timer.mp3');
 start.style.display = "none"
 pause.style.display = "inherit"
 let reset = document.getElementById("reset")
@@ -141,8 +142,12 @@ reset.addEventListener("click", () => {
     clearInterval(a)
     start.style.display = "inherit"
 pause.style.display = "none"
+workTitle.classList.add("active")
+breakTitle.classList.remove("active")
 })
     let timerFunction = () => {
+        constantTime = workMinuets ;  
+        constantSeconds = seconds ;
         document.getElementById("minutes").innerHTML = workMinuets;
         document.getElementById("seconds").innerHTML = seconds;
     if( seconds < 10 ){
@@ -159,20 +164,20 @@ pause.style.display = "none"
                     breakTitle.classList.add("active")
                     workTitle.classList.remove("active") 
                     intreval++
+                    audio.play();
                 }else{
                     workMinuets = workTime - 1;
                     breakCount++
                     workTitle.classList.add("active")
                     breakTitle.classList.remove("active")
                     longBreakTitle.classList.remove("active")
+                    audio.play();
                 }
                 }
-                seconds = 59;
+                seconds = 2;
                 
                 
             }
-            constantTime = workMinuets ;  
-            constantSeconds = seconds + 1
     }
     setInterval( function(){
         if(intreval == longBreakIntervalTime){
@@ -188,9 +193,9 @@ pause.style.display = "none"
     },1)
     let a =   setInterval(timerFunction,1000);
     pause.addEventListener('click', () =>{
-        cancelled = true
         start.style.display = "inherit"
         pause.style.display = "none"
+        cancelled = true
         if(cancelled){
             workTime =  constantTime + 1
           seconds =  constantSeconds
