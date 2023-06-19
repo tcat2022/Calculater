@@ -15,7 +15,7 @@ let longBreakIntervalTime = 4
 let seconds = "00";
 let cancelled = false
 let constantTime = input.value
-let constantSeconds = "2"
+let constantSeconds = "3"
 setInterval(function(){
     if(input.value === "0"){
         workTime = 25
@@ -148,10 +148,10 @@ workTitle.classList.add("active")
 breakTitle.classList.remove("active")
 longBreakTitle.classList.remove("active")
 })
+let b = setInterval( function(){ seconds = seconds - 1; console.log(seconds)},1000 )
     let timerFunction = () => {
+        constantTime = workMinuets; constantSeconds = seconds
         console.log(breakCount)
-        constantTime = workMinuets ;  
-        constantSeconds = seconds ;
         document.getElementById("minutes").innerHTML = workMinuets;
         document.getElementById("seconds").innerHTML = seconds;
         document.title = workMinuets + ":" + seconds;
@@ -160,8 +160,7 @@ longBreakTitle.classList.remove("active")
             document.title = workMinuets + ":" + "0" + seconds;
         }
 
-        seconds = seconds - 1;
-        if(seconds === -1) {
+        if(seconds === 0) {
             workMinuets = workMinuets - 1;
             if(workMinuets === -1){
                 if(breakCount % 2 === 0){
@@ -182,7 +181,7 @@ longBreakTitle.classList.remove("active")
                     document.title ="Work"
                 }
                 }
-                seconds = 2;
+                seconds = 3;
 
                 
                 
@@ -210,8 +209,8 @@ longBreakTitle.classList.remove("active")
         if(cancelled){
             workTime =  constantTime + 1
           seconds =  constantSeconds
-              clearInterval(a)
-      console.log(constantSeconds)
+              clearInterval(b)
+      console.log(constantTime)
               }
               else{
                   constantTime = input.value 
