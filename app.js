@@ -139,14 +139,17 @@ reset.addEventListener("click", () => {
     constantSeconds = 2
     intreval = 0
     workTime = input.value
+    longbreakTime = inputLongBreak.value
     document.title = workTime + ":" + seconds;
     clearInterval(a)
     start.style.display = "inherit"
 pause.style.display = "none"
 workTitle.classList.add("active")
 breakTitle.classList.remove("active")
+longBreakTitle.classList.remove("active")
 })
     let timerFunction = () => {
+        console.log(breakCount)
         constantTime = workMinuets ;  
         constantSeconds = seconds ;
         document.getElementById("minutes").innerHTML = workMinuets;
