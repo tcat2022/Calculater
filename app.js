@@ -15,7 +15,7 @@ let longBreakIntervalTime = 4
 let seconds = "00";
 let cancelled = false
 let constantTime = input.value
-let constantSeconds = "59"
+let constantSeconds = "2"
 setInterval(function(){
     if(input.value === "0"){
         workTime = 25
@@ -136,6 +136,7 @@ reset.addEventListener("click", () => {
     document.getElementById("minutes").innerHTML = workTime;
     document.getElementById("seconds").innerHTML = "00";
     seconds = "00"
+    constantSeconds = 2
     intreval = 0
     workTime = input.value
     document.title = workTime + ":" + seconds;
@@ -178,7 +179,7 @@ breakTitle.classList.remove("active")
                     document.title ="Work"
                 }
                 }
-                seconds = 59;
+                seconds = 2;
 
                 
                 
